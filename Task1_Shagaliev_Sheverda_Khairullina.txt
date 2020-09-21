@@ -1,0 +1,32 @@
+create table user
+(
+    id       bigint primary key,
+    username char(20),
+    email    char(60),
+    time     timestamp,
+    password char(20)
+);
+
+create table teacher
+(
+    id      bigint primary key,
+    user_id bigint,
+    foreign key (user_id) references user (id)
+);
+
+create table `groups`
+(
+    id         bigint primary key,
+    name       char(8),
+    teacher_id bigint,
+    foreign key (teacher_id) references teacher (id)
+);
+
+create table student
+(
+    id       bigint primary key,
+    user_id  bigint,
+    group_id bigint,
+    foreign key (user_id) references user (id),
+    foreign key (group_id) references `groups` (id)
+);
