@@ -1,4 +1,4 @@
-CREATE TABLE `db1`.`students` (
+CREATE TABLE `students` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `groups_id` INT NOT NULL,
   `user_id` INT NOT NULL,
