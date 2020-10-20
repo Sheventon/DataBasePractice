@@ -1,1 +1,0 @@
-flyway -url=jdbc:mysql://localhost:3306/db1?serverTimezone=UTC -user=root -password=6363 migrate
