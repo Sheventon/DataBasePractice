@@ -1,0 +1,4 @@
+CREATE TABLE `disk` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `disk_model` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`));
