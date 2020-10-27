@@ -1,0 +1,6 @@
+CREATE TABLE `comment` (
+  `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
+  `client_id` BIGINT NOT NULL,
+  `message` TEXT(5000) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE);
