@@ -1,0 +1,17 @@
+CREATE TABLE `complectation` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `conditioner` TINYINT(1) NOT NULL DEFAULT 0,
+  `stereo_sound` TINYINT(1) NOT NULL DEFAULT 0,
+  `panorama` TINYINT(1) NOT NULL DEFAULT 0,
+  `heated_front_seats` TINYINT(1) NOT NULL DEFAULT 0,
+  `heating_rear_seats` TINYINT(1) NOT NULL DEFAULT 0,
+  `heating_rul` TINYINT(1) NOT NULL DEFAULT 0,
+  `privod_id` TINYINT NOT NULL,
+  `disk_id` TINYINT NOT NULL,
+  `disk_size` TINYINT NOT NULL,
+  `color` VARCHAR(50) NOT NULL,
+  `monitor` TINYINT(1) NOT NULL DEFAULT 0,
+  `parking_sensors` TINYINT(1) NOT NULL DEFAULT 0,
+  `mudguards` TINYINT(1) NOT NULL,
+  `salon_casing` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`id`));
