@@ -89,6 +89,11 @@ ALTER TABLE `car`
         FOREIGN KEY (`complectation_id`)
             REFERENCES `complectation` (`id`)
             ON DELETE NO ACTION
+            ON UPDATE NO ACTION,
+    ADD CONSTRAINT /*`model_id`*/
+        FOREIGN KEY (`model_id`)
+            REFERENCES `model` (`id`)
+            ON DELETE NO ACTION
             ON UPDATE NO ACTION;
 
 ALTER TABLE `car_showroom`
@@ -109,7 +114,7 @@ ALTER TABLE `location_status`
 ALTER TABLE `location_status`
     ADD CONSTRAINT /*`car_id`*/
         FOREIGN KEY (`car_id`)
-            REFERENCES `car` (`id`)
+            REFERENCES `car` (`serial_number`)
             ON DELETE NO ACTION
             ON UPDATE NO ACTION,
     ADD CONSTRAINT /*`car_showroom_id`*/
