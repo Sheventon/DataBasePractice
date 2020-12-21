@@ -1,4 +1,4 @@
-CREATE TABLE `drive` (
+CREATE TABLE `drive_sign_up` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `client_id` BIGINT UNSIGNED NOT NULL,
   `emploee_id` INT NOT NULL,

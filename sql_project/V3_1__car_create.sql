@@ -6,5 +6,6 @@ CREATE TABLE `car` (
   `engine_id` INT NOT NULL,
   `price` INT NOT NULL,
   `complectation_id` INT NOT NULL,
+  `car_showroom_id` SMALLINT,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `serial_number_UNIQUE` (`serial_number` ASC) VISIBLE);
