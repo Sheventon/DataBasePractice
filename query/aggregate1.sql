@@ -1,47 +1,60 @@
--- Выбираем количество работников в автосалоне с id = 53 --
-select count(*) from employee where car_showroom_id = 53;
+-- Выбираем количество работников в автосалоне с id = 42 --
+select count(*) amount_of_employee 
+from employee 
+where work_place_id = 42;
 
--- Выбираем сколько зарплаты нужно выдать всем работникам, у которых должность с id = 23 --
-select count(*) as empleyees, sum(`salary`.salary_size) as totl_salary from `employee` 
-left join `position` on `position`.id = `employee`.position_id
-left join `salary` on `position`.id = `salary`.position_id where `employee`.position_id = 23;
+-- Выбираем сколько зарплаты нужно выдать всем работникам, у которых должность consultant --
+select count(*) employees, sum(`position`.salary) total_salary 
+from `employee`
+join `position` on `position`.id = `employee`.position_id
+where `position`.position = 'consultant';
 
 -- Средний объем бензобака моделей автомобиля объем двигателя которых больше 2.8 литров и меньше 3.5 --
-select avg(m.fuel_capacity) from `model` as m
-join `car` as car on car.model_id = m.id
-join `engine` as eng on eng.id = car.engine_id
+select cast(avg(m.fuel_capacity) as decimal(6,2)) avg_fuel_capacity 
+from `model` m
+join `car` car on car.model_id = m.id
+join `engine` eng on eng.id = car.engine_id
 where eng.engine_volume between 2.8 and 3.5;
 
 -- Выбрать количество всех сервисов в регионе Nevada--
- select count(*) from service
+ select count(*) 
+ from service
  join address on address.id = service.address_id
  where region = 'Nevada';
 
--- Выбрать общую цену машин с id = 84, которые были куплены--
-select count(car_id), sum(price) from car
-join buy on car.id = buy.car_id
-where car.id = 84; 
+-- Вывести работников, которые проработали в концерне не менее 5 лет-- 
+select concat(em.firstname, ' ', em.surname, ' ', em.lastname) fio, pos.position, start_time, end_time
+from employee_chronology em_ch
+join employee em on em.id = em_ch.employee_id 
+join position pos on pos.id = em_ch.position_id
+where start_time > '2012-01-01' and datediff(end_time, start_time) > 365 * 5; 
 
--- Выбрать общую сумму услуг, купленных в сервисе с id = 60--
-select service_id, sum(prl.price) as full_price from service_sign_up as ssu
-left join price_list as prl on ssu.usluga_id = prl.usluga_id  
-where service_id = 60;
+-- Выбрать общую сумму услуг, которые были куплены клиентом с наибольшим числом записей на сервис --
+select concat(cl.first_name, ' ', cl.last_name, ' ', cl.patronymic) `client`, sum(total_cost) total_cost
+from service_sign_up ssu
+join `client` cl on cl.id =  ssu.client_id
+where client_id = (select max(total) max 
+from (select count(client_id) total
+from service_sign_up 
+group by client_id)
+result);
 
 -- Выбрать количество автомобилей в комплектации которого есть кондиционер и гидроусилитель--
-select count(*) from car as c
-join complectation as com on c.complectation_id = com.id
-join privod as p on p.id = com.privod_id
-where com.conditioner = 1 and p.privod_type = 'gidro';
+select count(*) count
+from car c
+join complectation com on c.complectation_id = com.id
+join privod_of_steering_wheel p on p.id = com.privod_id
+where com.conditioner = 1 and p.privod_type = 'electro';
 
--- Найти максимальную и минимальную зарплату работника работающего в таком то салоне--
-select min(salary_size) as min_salary, max(salary_size) as max_salary
+-- Найти максимальную и минимальную зарплату работников работающих в помещении с id = 5--
+select min(salary) min_salary, max(salary) max_salary
 from employee as emp
+join work_place on emp.work_place_id = work_place.id
 join position as pos on pos.id = emp.position_id
-join salary as sal on sal.position_id = pos.id
-where emp.car_showroom_id = 53;
+where work_place.id = 5;
 
 -- Выбрать количество записей на драйв, в которых участвовал работник с id = в период не позже 3 марта 2005 года--
-select emploee_id, count(emploee_id) as count_of_drives from drive 
+select emploee_id, count(emploee_id) as count_of_drives from drive_sign_up 
 where emploee_id = 122 and date < '2005-03-03';
 
 -- найти среднее соотношение лошадиных сил к расходу топлива и максимальную цену автомобиля

@@ -1,8 +1,8 @@
 CREATE TABLE `client` (
   `id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(50) NOT NULL,
-  `last_name` VARCHAR(50) NOT NULL,
-  `patronymic` VARCHAR(50) NOT NULL,
+  `firstname` VARCHAR(50) NOT NULL,
+  `surname` VARCHAR(50) NOT NULL,
+  `lastname` VARCHAR(50) NOT NULL,
   `passport_series` INT NOT NULL,
   `passport_number` INT NOT NULL,
   `birthday_date` DATE NOT NULL,

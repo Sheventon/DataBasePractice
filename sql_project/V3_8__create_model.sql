@@ -5,6 +5,6 @@ CREATE TABLE `model` (
   `height` SMALLINT NOT NULL,
   `length` SMALLINT NOT NULL,
   `width` SMALLINT NOT NULL,
-  `fuel_capacity` DOUBLE NOT NULL,
+  `fuel_capacity` DECIMAL(6,2) NOT NULL,
   `wheel_privod` ENUM('full', 'front', 'back') DEFAULT 'full', 
   PRIMARY KEY (`id`));
